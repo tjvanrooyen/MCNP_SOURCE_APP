@@ -1,0 +1,12 @@
+ICRP-07.RAD      ! source file for radiation source data
+ICRP-07.BET      ! source file for beta emmission data
+Zlist.txt        ! data file with Z number per isotope
+0.001            ! E-min cutoff for photons and electrons
+MIX              ! mode of the run - dump all (ALL) or selected ISOTOPE, or MIX of isotopes
+OUTPUT           ! Output descriptor - for use in output filename creation
+
+4 1000
+Na-22 3.7E10
+Co-60 1.0E10
+Na-24 2.0E10
+N-16 1.1E10

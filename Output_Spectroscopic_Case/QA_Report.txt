@@ -1,0 +1,63 @@
+====================================================================================================
+ MCNP_SOURCE_APP -- QUALITY ASSURANCE REPORT
+====================================================================================================
+ Case      : Mixture of 9 nuclides, total activity 1.510539E+17 Bq
+ Generated : 2026-09-05T14:41:57
+ Verdict   : PASS   (23 passed, 0 warnings, 0 failures)
+====================================================================================================
+
+CHECKS
+----------------------------------------------------------------------------------------------------
+  [PASS] BETA-BRANCH   reconstructed <E> matches ICRP-07.RAD Ebar     3 branches, worst +0.108% (Tl-209 BEN)
+  [PASS] BETA-BRANCH   reconstruction method census                   BET=3
+  [PASS] BETA-MIX      BEN tabulated yield == activity-weighted ICRP yield 3.353972E-01 vs 3.353972E-01 (+0.00E+00)
+  [PASS] BETA-MIX      BEN tabulated <E> == activity-weighted ICRP Ebar 3.179090E-01 vs 3.171434E-01 MeV (+0.241%)
+  [PASS] SOURCE        energies positive, yields non-negative, ordering correct all 9 classes
+  [PASS] PARTITION     energy partition contiguous and monotonic      1063 bins, 1.0000E-05 - 1.5000E+01 MeV
+  [PASS] BINNING       DEP total yield conserved by binning           631 -> 163 lines, 1.6071248E+00 -> 1.6071248E+00 (+0.00E+00)
+  [PASS] BINNING       DEP binned energies lie inside the partition   [1.000E-05, 1.500E+01] MeV
+  [PASS] BINNING       DEE total yield conserved by binning           905 -> 292 lines, 1.4501724E+00 -> 1.4501724E+00 (+0.00E+00)
+  [PASS] BINNING       DEE binned energies lie inside the partition   [1.000E-05, 1.500E+01] MeV
+  [PASS] BINNING       N untouched by DEP/DEE binning                 0.0000000E+00
+  [PASS] BINNING       BEN untouched by DEP/DEE binning               3.3539722E-01
+  [PASS] BINNING       BEP untouched by DEP/DEE binning               0.0000000E+00
+  [PASS] BINNING       DEA untouched by DEP/DEE binning               6.6458291E-01
+  [PASS] BINNING       DER untouched by DEP/DEE binning               6.6458291E-01
+  [PASS] DECK          spectroscopic: all 9 PAR entries and SI/SP blocks present SDEF_MCNP6_spectroscopic.out
+  [PASS] DECK          spectroscopic: PAR yields match the source term worst +8.30E-09 at D24
+  [PASS] DECK          spectroscopic: each PAR yield == integral of its own SI/SP block worst -1.83E-08 at D22
+  [PASS] DECK          spectroscopic: tabulated emission lines        2598 lines over 9 distributions
+  [PASS] DECK          binned: all 9 PAR entries and SI/SP blocks present SDEF_MCNP6_binned.out
+  [PASS] DECK          binned: PAR yields match the source term       worst +8.30E-09 at D24
+  [PASS] DECK          binned: each PAR yield == integral of its own SI/SP block worst -1.87E-08 at D22
+  [PASS] DECK          binned: tabulated emission lines               1517 lines over 9 distributions
+
+BETA BRANCH RECONSTRUCTION
+----------------------------------------------------------------------------------------------------
+  Y and Ebar are the ICRP-07.RAD values for that branch of that nuclide.
+  <E> dev is the error of the reconstructed spectrum's mean energy against Ebar.
+  Method:  BET      = ICRP-07.BET used directly (single-branch nuclide)
+           CORR     = evaluated positron spectrum from ICRP-07-CORR.BEP
+           BET-CORR = combined ICRP-07.BET minus that positron spectrum
+           FERMI    = allowed-shape spectrum fitted to Ebar
+
+  nuclide     branch     act.frac      Y /decay    Ebar /MeV    <E> dev  method
+  ------------------------------------------------------------------------------------------------
+  Pb-209      BEN      1.6886E-01  1.000000E+00 1.974420E-01   -0.068%  BET
+  Bi-213      BEN      1.6654E-01  9.790998E-01 4.338844E-01   -0.007%  BET
+  Tl-209      BEN      3.4811E-03  1.000001E+00 6.553988E-01    0.108%  BET
+
+MIXTURE SOURCE TERM (per average decay of the mixture)
+----------------------------------------------------------------------------------------------------
+  class                                    yield     mean E /MeV   points
+  Neutrons (N)                     0.0000000E+00   0.0000000E+00        0
+  Discrete photons (DEP)           1.6071248E+00   2.2710120E-02      631
+  Discrete electrons (DEE)         1.4501724E+00   6.1497734E-03      905
+  Beta- (BEN)                      3.3539722E-01   3.1790899E-01      900
+  Beta+ (BEP)                      0.0000000E+00   0.0000000E+00        0
+  Alpha (DEA)                      6.6458291E-01   6.8720778E+00       79
+  Recoil atoms (DER)               6.6458291E-01   1.2835854E-01       79
+  Heavy fission frag (HFF)         0.0000000E+00   0.0000000E+00        0
+  Light fission frag (LFF)         0.0000000E+00   0.0000000E+00        0
+
+====================================================================================================

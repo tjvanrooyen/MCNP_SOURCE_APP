@@ -1,0 +1,1 @@
+Keep the codebase modular.  Place modules here.  Do not overengineer the code.  The code must be readable and maintain-able.

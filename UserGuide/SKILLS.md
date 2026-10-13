@@ -1,0 +1,1 @@
+Write a user guide in this folder.  MarkDown format.  Must be readable in Typora.

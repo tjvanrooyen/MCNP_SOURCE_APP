@@ -1,0 +1,8 @@
+# MCNP_SOURCE_APP dependencies
+# Install with: python -m pip install -r requirements.txt
+
+numpy>=2.0        # required: numerical core (sourceterm.py, betaspectra.py, qa.py)
+matplotlib>=3.8   # optional: graph output (plotting.py); degrades gracefully if absent
+openpyxl>=3.1     # optional: only for tools/build_corr_bep.py when REBUILDING
+                  #           ICRP-07-CORR.BEP from the shared reference library.
+                  #           Not needed to run the code or to --check that file.

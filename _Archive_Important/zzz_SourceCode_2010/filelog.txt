@@ -1,0 +1,9 @@
+ File DUMP_main.txt opened on unit          200
+ File mcnpsource.INP opened on unit          201
+ File closed on unit          201
+ File ICRP-07.RAD opened on unit          201
+ File ICRP-07.BET opened on unit          202
+ File Zlist.txt opened on unit          203
+ File closed on unit          203
+ File OUTPUT_MIX.txt opened on unit          203
+ File closed on unit          203

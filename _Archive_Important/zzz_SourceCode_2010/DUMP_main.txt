@@ -1,0 +1,4 @@
+ Commencing processing 12:13:35 20140811
+ Input file processed.
+ Processing finished at 12:13:45 20140811
+ Calculational time:    10.836678    
