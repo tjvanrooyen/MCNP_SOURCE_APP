@@ -2,25 +2,13 @@
 
 **Version 2.1**
 
-A modular Python code that converts a radionuclide **activity inventory** $(i,A_{i})$ into **MCNP6.3 SDEF**
+A modular Python code that converts a radionuclide **activity inventory** $(i,A_{i})$ into **MCNP6 SDEF**
 (source definition) ionising-radiation emission source terms.
-
-> **Two source-term defects have been corrected. Regenerate older decks.**
-> * **v2.1** — the fission-fragment classes each carried the *full* fragment
->   yield, so decks emitted twice the physical number of fragments, both at the
->   average energy. Affects the 35 spontaneously fissioning nuclides.
-> * **v2.0** — the beta-minus / beta-plus branches each carried the *combined*
->   yield, and the positron branch carried the electron spectrum. Affects the 22
->   nuclides emitting both branches, and Cm-250.
->
-> Evidence: `UserGuide/Verification_Record_Fission_Fragments.md` and
-> `UserGuide/Verification_Record_BEN_BEP.md`.
 
 ## What it does
 
-Given an inventory `(i; A_i)` of nuclides and activities (Bq) and the ICRP-107
-emission data, the code builds the collective emission source term
-`(E_g; Y_g)_j` for each particle class `j` and writes, in one run:
+Given an inventory $(i,A_{i})$ of nuclide identities and their activities in Bq, and the ICRP-107 (2008)
+emission data, the code builds the collective ionising radiation emission source term $(E_{g}, Y_{g})_{j}$ for each particle class $j$ and writes, in one run:
 
 | Output | File | Notes |
 |--------|------|-------|
