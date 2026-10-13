@@ -2,8 +2,7 @@
 
 **Version 2.1**
 
-A modular Python port of the 2009 FORTRAN `mcnpsource` utility. It converts an
-ICRP-107 (2008) radionuclide **activity inventory** into **MCNP6.3 SDEF**
+A modular Python code that converts a radionuclide **activity inventory** $(i,A_{i})$ into **MCNP6.3 SDEF**
 (source definition) ionising-radiation emission source terms.
 
 > **Two source-term defects have been corrected. Regenerate older decks.**
