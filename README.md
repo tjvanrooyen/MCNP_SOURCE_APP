@@ -51,18 +51,12 @@ other classes stay spectroscopically exact.
 
 ICRP-107 supplies **one** continuous beta spectrum per nuclide. For the **22
 nuclides that emit both beta-minus and beta-plus** that tabulation is the **sum**
-of the two branches. Versions before 2.0 handed it to both the BEN and the BEP
-distribution, so both branches got the combined yield and the positron branch got
-the electron spectrum's shape. For Cu-64 the old deck wrote
-BEN = BEP = 5.649E-01 per decay, where the truth is BEN = 3.900E-01 and
-BEP = 1.741E-01.
+of the two branches. This is an approximation; it was corrected in the present code version.
 
 `msa_modules/betaspectra.py` now reconstructs the branches separately, taking the
 per-branch yield and mean energy from `ICRP-07.RAD` and the positron spectrum
 from the project data file `ICRP-07-CORR.BEP`. **All 952 beta branches in
-ICRP-107 reproduce their ICRP-tabulated mean energy to within 2 %.** The
-corrected yields agree exactly with the independent legacy FORTRAN
-implementation.
+ICRP-107 reproduce their ICRP-tabulated mean energy to within 2 %.**
 
 The same verification caught a second fault: the `ICRP-07.BET` block for
 **Cm-250** is the beta spectrum of its *fission products*, not of Cm-250, and
@@ -99,7 +93,7 @@ python -m tests.run_tests              # 49-test regression suite
 python tools/build_corr_bep.py --check # verify the positron data file
 ```
 
-## Improvements over the 2009 code
+## Improvements over the 2009 Necsa RRT code
 
 * **Low-energy completeness.** Electrons and photons are retained down to
   **1.0E-5 MeV (10 eV)**, not the old 1 keV floor. (Validated: emulating the old
@@ -136,7 +130,7 @@ Default project layout:
 * outputs  `Output_Spectroscopic_Case/`, `Output_Binned/`, `Output_Spectroscopic_ALL/`
 * graphs   `GraphBank/`
 
-Requires Python 3.10+, `numpy`, and `matplotlib` (graphs degrade gracefully if
+Requires Python 3.12+, `numpy`, and `matplotlib` (graphs degrade gracefully if
 matplotlib is unavailable).
 
 ## Package layout (`msa_modules/`)
