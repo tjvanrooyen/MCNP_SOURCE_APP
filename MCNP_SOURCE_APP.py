@@ -52,8 +52,9 @@ QUALITY ASSURANCE
 Every run verifies its own output against ICRP-107 and against the deck as
 written to disk, prints a verdict, and writes ``QA_Report.txt`` beside the
 spectroscopic deck.  The process exit status is 0 on PASS or WARN and 3 on FAIL;
-a FAIL means the deck must not be used.  Run ``python -m tests.run_tests`` for
-the standing regression suite.
+a FAIL means the deck must not be used.  Run
+``python _Archive_Important/tests/run_tests.py`` for the standing regression
+suite.
 
 -------------------------------------------------------------------------------
 ON-DEMAND "ALL" MODE  (per-nuclide spectroscopic SDEF for the WHOLE database)

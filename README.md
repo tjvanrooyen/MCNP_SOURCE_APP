@@ -15,7 +15,7 @@ emission data, the code builds the collective ionising radiation emission source
 | **Spectroscopic SDEF** | `Output_Spectroscopic_Case/SDEF_MCNP6_spectroscopic.out` | full precision; can exceed 20 000 lines |
 | **QA report**          | `Output_Spectroscopic_Case/QA_Report.txt` | self-verification of the run; read the verdict first |
 | **Binned SDEF**        | `Output_Binned/SDEF_MCNP6_binned.out` | DEP & DEE collapsed onto a fixed energy partition |
-| **Overview graph**     | `GraphBank/SDEF_IREST_ALL.{svg,pdf,png}` | binned DEP/DEE + spectroscopic rest; linear energy axis (log on request); PNG at 600 dpi |
+| **Overview graph**     | `GraphBank/SDEF_IREST_ALL.{svg,pdf,png}` | binned DEP/DEE + spectroscopic rest (fission fragments not drawn); linear energy axis (log on request); PNG at 600 dpi |
 
 On demand it also writes a **per-nuclide** spectroscopic SDEF for every nuclide
 in the database (`Output_Spectroscopic_ALL/<nuclide>.txt`, ~1250 files).
@@ -89,8 +89,8 @@ written to disk, prints a verdict, and writes `QA_Report.txt`. Exit status is 3
 on `FAIL`, meaning the deck must not be used.
 
 ```
-python -m tests.run_tests              # 49-test regression suite
-python tools/build_corr_bep.py --check # verify the positron data file
+python _Archive_Important/tests/run_tests.py               # 49-test regression suite
+python _Archive_Important/tools/build_corr_bep.py --check  # verify the positron data file
 ```
 
 ## Improvements over the 2009 Necsa RRT code
@@ -110,6 +110,8 @@ python tools/build_corr_bep.py --check # verify the positron data file
 
 ## Usage
 
+Double-click `Run.cmd`, or from a terminal in the project folder:
+
 ```
 python MCNP_SOURCE_APP.py                 # spectroscopic + binned SDEF + graph
 python MCNP_SOURCE_APP.py --all           # ...and (re)generate per-nuclide ALL output
@@ -123,6 +125,10 @@ The per-nuclide **ALL** output is **off by default** (it writes ~1250 files); ru
 it on demand with `--all` or `--all-only`. If any inventory nuclide is missing
 from `ICRP-07.RAD` the run stops and lists it (manual control is intentional).
 
+To save your work to GitHub, double-click `Commit_to_GitHub.cmd`: it shows what
+changed, asks for a commit message, commits, brings in any changes made on
+GitHub, and pushes (user guide, Section 11).
+
 Default project layout:
 
 * input    `Input/Input.inp`
@@ -130,6 +136,8 @@ Default project layout:
 * bins      `data_EnergyBins/EnergyBins_PE.dat`
 * outputs  `Output_Spectroscopic_Case/`, `Output_Binned/`, `Output_Spectroscopic_ALL/`
 * graphs   `GraphBank/`
+* guide    `UserGuide/UserGuide.md`
+* archive  `_Archive_Important/` — verification records, regression tests, the positron-file tool, and the original 2009/2010 FORTRAN code
 
 Requires Python 3.12+, `numpy`, and `matplotlib` (graphs degrade gracefully if
 matplotlib is unavailable).
@@ -153,6 +161,6 @@ matplotlib is unavailable).
 
 | Document | Contents |
 |----------|----------|
-| `UserGuide/UserGuide.md` | how to run it, read the outputs, and interpret the QA report |
-| `UserGuide/Verification_Record_BEN_BEP.md` | the v2.0 beta correction: cause, fix, and evidence |
-| `UserGuide/Verification_Record_Fission_Fragments.md` | the v2.1 fission-fragment correction: cause, fix, and evidence |
+| `UserGuide/UserGuide.md` | the full user guide: running the code, preparing inputs, using the decks in MCNP (including normalisation to per-second results), the QA report, the graph, troubleshooting |
+| `_Archive_Important/Verification/Verification_Record_BEN_BEP.md` | the v2.0 beta correction: cause, fix, and evidence |
+| `_Archive_Important/Verification/Verification_Record_Fission_Fragments.md` | the v2.1 fission-fragment correction: cause, fix, and evidence |

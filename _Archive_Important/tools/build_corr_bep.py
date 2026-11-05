@@ -1,6 +1,10 @@
 """Rebuild ``data_Emissions_RadioNuclides/ICRP-07-CORR.BEP`` from the reference library.
 
-    python tools/build_corr_bep.py [--library DIR] [--out FILE] [--check]
+    python _Archive_Important/tools/build_corr_bep.py [--library DIR] [--out FILE] [--check]
+
+(run from the project folder; the script finds the project folder by itself --
+the nearest folder above it that contains ``msa_modules`` -- so it works
+wherever the ``tools`` folder is kept).
 
 ``ICRP-07-CORR.BEP`` holds the separately evaluated beta-plus (positron)
 spectrum of every nuclide that emits *both* beta-minus and beta-plus.  ICRP-107
@@ -38,9 +42,24 @@ import sys
 
 import numpy as np
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+def _project_root() -> str:
+    """The nearest folder above this script that contains ``msa_modules``."""
+    folder = os.path.dirname(os.path.abspath(__file__))
+    while not os.path.isdir(os.path.join(folder, "msa_modules")):
+        parent = os.path.dirname(folder)
+        if parent == folder:
+            raise SystemExit("Cannot find the MCNP_SOURCE_APP project folder")
+        folder = parent
+    return folder
+
+
+ROOT = _project_root()
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
+
+# This script's path relative to the project folder, as recorded in the
+# provenance header of the file it writes.
+TOOL_PATH = os.path.relpath(os.path.abspath(__file__), ROOT).replace(os.sep, "/")
 
 from msa_modules import betaspectra                                     # noqa: E402
 from msa_modules import databases as db                                 # noqa: E402
@@ -197,9 +216,9 @@ c   ICRP-107 itself, so the shapes are validated against the same authority
 c   that supplies the yields.
 c
 c PROVENANCE
-c   Generated {datetime.date.today().isoformat()} by tools/build_corr_bep.py from the institutional
+c   Generated {datetime.date.today().isoformat()} by {TOOL_PATH} from the institutional
 c   reference emission library {library}\\<nuclide>.xlsx, sheet "BEP".
-c   Re-verify at any time with:  python tools/build_corr_bep.py --check
+c   Re-verify at any time with:  python {TOOL_PATH} --check
 c
 c VERIFICATION (integral vs Y_BEP, mean energy vs Ebar_BEP, both from ICRP-07.RAD)
 c
