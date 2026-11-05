@@ -12,7 +12,9 @@ term, verifies it, and writes:
   with the discrete photon (DEP) and electron (DEE) classes collapsed onto the
   fixed energy partition in ``data_EnergyBins/EnergyBins_PE.dat``;
 * ``GraphBank/SDEF_IREST_ALL.{svg,pdf,png}``                 -- an overview graph
-  (binned DEP/DEE plus the spectroscopic remaining classes).
+  (binned DEP/DEE plus the spectroscopic remaining classes; fission fragments
+  are not graphed).  The energy axis is LINEAR by default; add
+  ``--graph-xscale log`` for a logarithmic energy axis.
 
 This is the modern Python port of the 2009 FORTRAN ``mcnpsource`` utility.
 
@@ -76,7 +78,9 @@ Usage
                               [--case-out PATH] [--binned-out PATH]
                               [--all-dir DIR] [--graphdir DIR]
                               [--all] [--all-only] [--no-graph] [--force]
-                              [--graph-energy-max MEV]
+                              [--graph-xscale {linear,log}] [--graph-energy-max MEV]
+
+    python MCNP_SOURCE_APP.py --graph-xscale log    # log energy axis on the graph
 """
 
 from __future__ import annotations
@@ -136,8 +140,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p.add_argument("--all-only", action="store_true", help="ONLY (re)generate ALL output, skip the case run")
     p.add_argument("--no-graph", action="store_true", help="skip graph generation")
     p.add_argument("--force", action="store_true", help="drop unsupported nuclides and continue")
-    p.add_argument("--graph-energy-max", type=float, default=plotting.ENERGY_MAX_MEV,
-                   help="upper energy (MeV) of the graph x-axis; raise to view fission fragments")
+    p.add_argument("--graph-xscale", choices=("linear", "log"), default=plotting.X_SCALE,
+                   help="scale of the graph energy (horizontal) axis")
+    p.add_argument("--graph-energy-max", type=float, default=None,
+                   help="upper energy (MeV) of the graph energy axis; default: automatic, "
+                        "just above the highest visible emission (at most 15 MeV)")
     return p.parse_args(argv)
 
 
@@ -270,9 +277,11 @@ def _run_case(args, rad_path, bet_path, ack_path, corr_path) -> int:
     # --- 8. Graph (binned DEP/DEE + spectroscopic rest) -----------------
     if not args.no_graph:
         print("Rendering source-term graph ...")
-        gtitle = f"All-particle emission spectra $Q(E)$ -- {len(inv.items)}-nuclide mixture"
+        gtitle = f"All-particle emission spectra $Q(E)$ — {len(inv.items)}-nuclide mixture"
         outs = plotting.plot_source_term(st_binned, graph_dir, stem="SDEF_IREST",
-                                         title=gtitle, energy_max=args.graph_energy_max)
+                                         title=gtitle, mixture=inv.items,
+                                         energy_max=args.graph_energy_max,
+                                         x_scale=args.graph_xscale)
         for out in outs:
             print(f"Graph written to:              {out}")
 

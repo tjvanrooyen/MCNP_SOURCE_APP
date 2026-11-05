@@ -15,7 +15,7 @@ emission data, the code builds the collective ionising radiation emission source
 | **Spectroscopic SDEF** | `Output_Spectroscopic_Case/SDEF_MCNP6_spectroscopic.out` | full precision; can exceed 20 000 lines |
 | **QA report**          | `Output_Spectroscopic_Case/QA_Report.txt` | self-verification of the run; read the verdict first |
 | **Binned SDEF**        | `Output_Binned/SDEF_MCNP6_binned.out` | DEP & DEE collapsed onto a fixed energy partition |
-| **Overview graph**     | `GraphBank/SDEF_IREST_ALL.{svg,pdf,png}` | binned DEP/DEE + spectroscopic rest; PNG at 600 dpi |
+| **Overview graph**     | `GraphBank/SDEF_IREST_ALL.{svg,pdf,png}` | binned DEP/DEE + spectroscopic rest; linear energy axis (log on request); PNG at 600 dpi |
 
 On demand it also writes a **per-nuclide** spectroscopic SDEF for every nuclide
 in the database (`Output_Spectroscopic_ALL/<nuclide>.txt`, ~1250 files).
@@ -114,7 +114,8 @@ python tools/build_corr_bep.py --check # verify the positron data file
 python MCNP_SOURCE_APP.py                 # spectroscopic + binned SDEF + graph
 python MCNP_SOURCE_APP.py --all           # ...and (re)generate per-nuclide ALL output
 python MCNP_SOURCE_APP.py --all-only      # ONLY (re)generate per-nuclide ALL output
-python MCNP_SOURCE_APP.py --graph-energy-max 100   # widen graph to show fission fragments
+python MCNP_SOURCE_APP.py --graph-xscale log     # graph with a LOG energy axis (default: linear)
+python MCNP_SOURCE_APP.py --graph-energy-max 8   # fix the graph's upper energy (default: automatic)
 python MCNP_SOURCE_APP.py --force         # drop unsupported nuclides and continue
 ```
 
@@ -146,7 +147,7 @@ matplotlib is unavailable).
 | `energybins.py`  | Energy partition + DEP/DEE binning                         |
 | `sdef.py`        | MCNP6.3 SDEF writer                                         |
 | `qa.py`          | Self-verification of the source term and written decks     |
-| `plotting.py`    | Source-term overview graph (SVG/PDF/PNG)                    |
+| `plotting.py`    | Source-term overview graph (SVG/PDF/PNG); `X_SCALE` sets the default energy-axis scale |
 
 ## Documentation
 

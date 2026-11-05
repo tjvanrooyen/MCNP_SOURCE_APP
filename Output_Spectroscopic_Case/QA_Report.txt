@@ -1,36 +1,51 @@
 ====================================================================================================
  MCNP_SOURCE_APP -- QUALITY ASSURANCE REPORT
 ====================================================================================================
- Case      : Mixture of 9 nuclides, total activity 1.510539E+17 Bq
- Generated : 2026-09-05T14:41:57
- Verdict   : PASS   (23 passed, 0 warnings, 0 failures)
+ Case      : Mixture of 12 nuclides, total activity 8.817836E+12 Bq
+ Generated : 2026-11-05T22:03:05
+ Verdict   : PASS   (33 passed, 0 warnings, 0 failures)
 ====================================================================================================
 
 CHECKS
 ----------------------------------------------------------------------------------------------------
-  [PASS] BETA-BRANCH   reconstructed <E> matches ICRP-07.RAD Ebar     3 branches, worst +0.108% (Tl-209 BEN)
-  [PASS] BETA-BRANCH   reconstruction method census                   BET=3
-  [PASS] BETA-MIX      BEN tabulated yield == activity-weighted ICRP yield 3.353972E-01 vs 3.353972E-01 (+0.00E+00)
-  [PASS] BETA-MIX      BEN tabulated <E> == activity-weighted ICRP Ebar 3.179090E-01 vs 3.171434E-01 MeV (+0.241%)
+  [PASS] BETA-BRANCH   reconstructed <E> matches ICRP-07.RAD Ebar     7 branches, worst -0.175% (Y-90 BEN)
+  [PASS] BETA-BRANCH   reconstruction method census                   BET=7
+  [PASS] BETA-MIX      BEN tabulated yield == activity-weighted ICRP yield 2.299657E-01 vs 2.299657E-01 (-1.21E-16)
+  [PASS] BETA-MIX      BEN tabulated <E> == activity-weighted ICRP Ebar 1.185781E-01 vs 1.183236E-01 MeV (+0.215%)
+  [PASS] BETA-MIX      BEP tabulated yield == activity-weighted ICRP yield 1.326902E-01 vs 1.326902E-01 (+2.09E-16)
+  [PASS] BETA-MIX      BEP tabulated <E> == activity-weighted ICRP Ebar 2.079376E-01 vs 2.070902E-01 MeV (+0.409%)
+  [PASS] DUAL-EMITTER  mixture BEN total != mixture BEP total         BEN 2.299657E-01, BEP 1.326902E-01 per decay
+  [PASS] FISSION       LFF yield == fission rate (one light fragment per fission) 2.7701582E-03 vs 2.7701582E-03 fissions/decay
+  [PASS] FISSION       HFF yield == fission rate (one heavy fragment per fission) 2.7701582E-03 vs 2.7701582E-03 fissions/decay
+  [PASS] FISSION       LFF + HFF == 2 x fission rate (no fragment double-count) 5.5403164E-03 fragments/decay
+  [PASS] FISSION       fragment kinetic energy per decay == fissions x TKE 5.2103074E-01 MeV/decay
+  [PASS] FISSION       light fragment faster than heavy fragment      3 fissioning nuclide(s) checked
+  [PASS] FISSION       implied prompt neutron multiplicity is physical nu in [3.00, 3.76]
+  [PASS] FISSION       fragment ZAIDs conserve parent Z and A - nu    Cf-252 (Z=98, A=252) -> 43108 + 55140: Z 98, A 248 vs 248.2
   [PASS] SOURCE        energies positive, yields non-negative, ordering correct all 9 classes
   [PASS] PARTITION     energy partition contiguous and monotonic      1063 bins, 1.0000E-05 - 1.5000E+01 MeV
-  [PASS] BINNING       DEP total yield conserved by binning           631 -> 163 lines, 1.6071248E+00 -> 1.6071248E+00 (+0.00E+00)
+  [PASS] BINNING       DEP total yield conserved by binning           541 -> 186 lines, 3.7237376E+00 -> 3.7237376E+00 (+0.00E+00)
   [PASS] BINNING       DEP binned energies lie inside the partition   [1.000E-05, 1.500E+01] MeV
-  [PASS] BINNING       DEE total yield conserved by binning           905 -> 292 lines, 1.4501724E+00 -> 1.4501724E+00 (+0.00E+00)
+  [PASS] BINNING       DEE total yield conserved by binning           264 -> 165 lines, 2.5155191E+00 -> 2.5155191E+00 (+0.00E+00)
   [PASS] BINNING       DEE binned energies lie inside the partition   [1.000E-05, 1.500E+01] MeV
-  [PASS] BINNING       N untouched by DEP/DEE binning                 0.0000000E+00
-  [PASS] BINNING       BEN untouched by DEP/DEE binning               3.3539722E-01
-  [PASS] BINNING       BEP untouched by DEP/DEE binning               0.0000000E+00
-  [PASS] BINNING       DEA untouched by DEP/DEE binning               6.6458291E-01
-  [PASS] BINNING       DER untouched by DEP/DEE binning               6.6458291E-01
+  [PASS] BINNING       N untouched by DEP/DEE binning                 1.0415866E-02
+  [PASS] BINNING       BEN untouched by DEP/DEE binning               2.2996574E-01
+  [PASS] BINNING       BEP untouched by DEP/DEE binning               1.3269021E-01
+  [PASS] BINNING       DEA untouched by DEP/DEE binning               8.6825084E-02
+  [PASS] BINNING       DER untouched by DEP/DEE binning               8.6825084E-02
   [PASS] DECK          spectroscopic: all 9 PAR entries and SI/SP blocks present SDEF_MCNP6_spectroscopic.out
-  [PASS] DECK          spectroscopic: PAR yields match the source term worst +8.30E-09 at D24
-  [PASS] DECK          spectroscopic: each PAR yield == integral of its own SI/SP block worst -1.83E-08 at D22
-  [PASS] DECK          spectroscopic: tabulated emission lines        2598 lines over 9 distributions
+  [PASS] DECK          spectroscopic: PAR yields match the source term worst -4.25E-08 at D21
+  [PASS] DECK          spectroscopic: each PAR yield == integral of its own SI/SP block worst +2.78E-08 at D25
+  [PASS] DECK          spectroscopic: tabulated emission lines        2646 lines over 9 distributions
   [PASS] DECK          binned: all 9 PAR entries and SI/SP blocks present SDEF_MCNP6_binned.out
-  [PASS] DECK          binned: PAR yields match the source term       worst +8.30E-09 at D24
-  [PASS] DECK          binned: each PAR yield == integral of its own SI/SP block worst -1.87E-08 at D22
-  [PASS] DECK          binned: tabulated emission lines               1517 lines over 9 distributions
+  [PASS] DECK          binned: PAR yields match the source term       worst -4.25E-08 at D21
+  [PASS] DECK          binned: each PAR yield == integral of its own SI/SP block worst +2.78E-08 at D25
+  [PASS] DECK          binned: tabulated emission lines               2192 lines over 9 distributions
+
+NOTES
+----------------------------------------------------------------------------------------------------
+  Cf-252: RAD FF yield read as fissions/decay, not fragments/decay: the fragments reading
+    implies nu = 7.52, outside the physical range 1-5; the fissions reading gives nu = 3.76.
 
 BETA BRANCH RECONSTRUCTION
 ----------------------------------------------------------------------------------------------------
@@ -43,21 +58,39 @@ BETA BRANCH RECONSTRUCTION
 
   nuclide     branch     act.frac      Y /decay    Ebar /MeV    <E> dev  method
   ------------------------------------------------------------------------------------------------
-  Pb-209      BEN      1.6886E-01  1.000000E+00 1.974420E-01   -0.068%  BET
-  Bi-213      BEN      1.6654E-01  9.790998E-01 4.338844E-01   -0.007%  BET
-  Tl-209      BEN      3.4811E-03  1.000001E+00 6.553988E-01    0.108%  BET
+  Co-58       BEP      4.7631E-01  1.489903E-01 2.010891E-01    0.059%  BET
+  Co-60       BEN      1.9279E-01  1.000000E+00 9.650147E-02   -0.069%  BET
+  Zn-65       BEP      1.1227E-01  1.401970E-02 1.425530E-01   -0.116%  BET
+  Na-22       BEP      6.6910E-02  8.989860E-01 2.158591E-01    0.028%  BET
+  Cs-137      BEN      3.2888E-02  1.000000E+00 1.883679E-01   -0.039%  BET
+  Sr-90       BEN      2.1547E-03  1.000000E+00 1.957290E-01   -0.074%  BET
+  Y-90        BEN      2.1320E-03  1.000000E+00 9.329050E-01   -0.175%  BET
+
+FISSION-FRAGMENT PARTITION
+----------------------------------------------------------------------------------------------------
+  Y_FF and Ebar are the ICRP-07.RAD FF line; Ebar is the mean energy of ONE fragment.
+  Binary fission gives one light and one heavy fragment, so each class takes half the
+  fragment yield.  Fragment energies follow from momentum conservation, E_L/E_H = A_H/A_L,
+  with TKE = 2 x Ebar.  nu is the prompt neutron multiplicity implied by the RAD N line.
+
+  nuclide      act.frac     fissions     nu   TKE/MeV  LFF zaid   E_L/MeV  HFF zaid   E_H/MeV
+  ------------------------------------------------------------------------------------------------
+  Cf-252     8.9591E-02 3.092000E-02   3.76    188.09     43108    106.08     55140     82.01
+  U-238      2.1547E-07 2.730000E-07   3.60    169.69     37094    101.35     55140     68.34
+  Th-232     6.6910E-07 7.000000E-12   3.00    169.69     35089    103.74     55140     65.95
+  Deck fragment ZAIDs: DELFF 43108, DEHFF 55140 (from the dominant fissioning nuclide)
 
 MIXTURE SOURCE TERM (per average decay of the mixture)
 ----------------------------------------------------------------------------------------------------
   class                                    yield     mean E /MeV   points
-  Neutrons (N)                     0.0000000E+00   0.0000000E+00        0
-  Discrete photons (DEP)           1.6071248E+00   2.2710120E-02      631
-  Discrete electrons (DEE)         1.4501724E+00   6.1497734E-03      905
-  Beta- (BEN)                      3.3539722E-01   3.1790899E-01      900
-  Beta+ (BEP)                      0.0000000E+00   0.0000000E+00        0
-  Alpha (DEA)                      6.6458291E-01   6.8720778E+00       79
-  Recoil atoms (DER)               6.6458291E-01   1.2835854E-01       79
-  Heavy fission frag (HFF)         0.0000000E+00   0.0000000E+00        0
-  Light fission frag (LFF)         0.0000000E+00   0.0000000E+00        0
+  Neutrons (N)                     1.0415866E-02   2.1500000E+00        3
+  Discrete photons (DEP)           3.7237376E+00   2.8985862E-01      541
+  Discrete electrons (DEE)         2.5155191E+00   1.8491565E-03      264
+  Beta- (BEN)                      2.2996574E-01   1.1857814E-01      900
+  Beta+ (BEP)                      1.3269021E-01   2.0793757E-01      900
+  Alpha (DEA)                      8.6825084E-02   6.1110192E+00       16
+  Recoil atoms (DER)               8.6825084E-02   9.8629223E-02       16
+  Heavy fission frag (HFF)         2.7701582E-03   8.2011497E+01        3
+  Light fission frag (LFF)         2.7701582E-03   1.0607550E+02        3
 
 ====================================================================================================
